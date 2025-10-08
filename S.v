@@ -56,7 +56,7 @@ module S(clk6p25m, btnL, btnR, btnU, btnD, pixel_index, oled_display);
     wire inside_sqr_ins = (x >= sqr_x+3 && x <= sqr_x+22) && //5 - 25
                           (y >= sqr_y+3 && y <= sqr_y+22);
                               
-    //number 10-19, 41-56, w = 9, h =15
+    //number9, 10-19, 41-56, w = 9, h =15
     wire inside_num = ( (x >= sqr_x+8 && x <= sqr_x+17) &&
                       (y >= sqr_y+5 && y <= sqr_y+8) ) ||
                       ( (y >= sqr_y+5 && y <= sqr_y+14) &&
@@ -76,16 +76,11 @@ module S(clk6p25m, btnL, btnR, btnU, btnD, pixel_index, oled_display);
     reg [6:0] cir_x; reg [6:0] cir_y;
     localparam cir_size = 10;        
     reg inside_cir;
-    reg left_cir, right_cir, top_cir, bot_cir;
     
     initial begin
         cir_x = 48;
         cir_y = 32;
         inside_cir = (x-cir_x)*(x-cir_x) + (y-cir_y)*(y-cir_y) <= (cir_size)*(cir_size);
-        left_cir = cir_x - cir_size;
-        right_cir = cir_x + cir_size;
-        top_cir = cir_y - cir_size;
-        bot_cir = cir_y + cir_size;
     end
     
     wire clk_cir;
